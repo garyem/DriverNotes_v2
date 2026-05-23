@@ -117,12 +117,18 @@
       button.addEventListener('click', () => {
         recognition.start();
         status.innerText = 'Listening...';
+
+        button.style.background = '#dc2626';
+        button.innerText = '🔴 RECORDING';
       });
 
       recognition.onresult = (event) => {
         const text = event.results[0][0].transcript;
         transcriptBox.innerText = text;
         status.innerText = 'Note captured successfully';
+
+        button.style.background = '#22c55e';
+        button.innerText = '🎤 TAP TO RECORD';
 
         // Future Make.com webhook goes here
         // fetch('YOUR_WEBHOOK_URL', {
@@ -139,12 +145,18 @@
 
       recognition.onerror = (event) => {
         status.innerText = 'Error: ' + event.error;
+
+        button.style.background = '#22c55e';
+        button.innerText = '🎤 TAP TO RECORD';
       };
 
       recognition.onend = () => {
         if (status.innerText === 'Listening...') {
           status.innerText = 'Stopped listening';
         }
+
+        button.style.background = '#22c55e';
+        button.innerText = '🎤 TAP TO RECORD';
       };
     }
   </script>
