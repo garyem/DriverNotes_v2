@@ -122,24 +122,25 @@
         button.innerText = '🔴 RECORDING';
       });
 
-      recognition.onresult = (event) => {
-        const text = event.results[0][0].transcript;
-        transcriptBox.innerText = text;
-        status.innerText = 'Note captured successfully';
+     recognition.onresult = (event) => {
+  const text = event.results[0][0].transcript;
+  transcriptBox.innerText = text;
+  status.innerText = 'Note captured successfully';
 
-       button.style.background = '#22c55e';
-button.innerText = '🎤 TAP TO RECORD';
+  button.style.background = '#22c55e';
+  button.innerText = '🎤 TAP TO RECORD';
 
-fetch('https://hook.eu2.make.com/2d7l8iedu4d4seyknf19oniir2geuu7o', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    note: text,
-    timestamp: new Date().toISOString()
-  })
-});
+  fetch('https://hook.eu2.make.com/2d7l8iedu4d4seyknf19oniir2geuu7o', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      note: text,
+      timestamp: new Date().toISOString()
+    })
+  });
+};
 
       recognition.onerror = (event) => {
         status.innerText = 'Error: ' + event.error;
