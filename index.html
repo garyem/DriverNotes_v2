@@ -127,21 +127,19 @@
         transcriptBox.innerText = text;
         status.innerText = 'Note captured successfully';
 
-        button.style.background = '#22c55e';
-        button.innerText = '🎤 TAP TO RECORD';
+       button.style.background = '#22c55e';
+button.innerText = '🎤 TAP TO RECORD';
 
-        // Future Make.com webhook goes here
-        // fetch('YOUR_WEBHOOK_URL', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify({
-        //     note: text,
-        //     timestamp: new Date().toISOString()
-        //   })
-        // });
-      };
+fetch('https://hook.eu2.make.com/2d7l8iedu4d4seyknf19oniir2geuu7o', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    note: text,
+    timestamp: new Date().toISOString()
+  })
+});
 
       recognition.onerror = (event) => {
         status.innerText = 'Error: ' + event.error;
